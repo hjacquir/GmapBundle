@@ -9,7 +9,7 @@ namespace Hj\GmapBundle;
 use \Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- * Add a google map on your symfony site
+ * Add a google map on your symfony application
  */
 class HjGmapBundle extends Bundle
 {

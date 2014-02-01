@@ -1,0 +1,4 @@
+services:
+    hj_gmap:
+        api:
+            class: Hj\GmapBundle\Services\Api
