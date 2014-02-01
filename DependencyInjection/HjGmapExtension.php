@@ -6,20 +6,19 @@
 
 namespace Hj\GmapBundle\DependencyInjection;
 
+use \Symfony\Component\Config\FileLocator;
 use \Symfony\Component\DependencyInjection\ContainerBuilder;
 use \Symfony\Component\DependencyInjection\Extension\Extension;
-use \Symfony\Component\HttpKernel\Config\FileLocator;
-use \Symfony\Component\Validator\Mapping\Loader\YamlFileLoader;
+use \Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 /**
  * Class to load services
  */
 class HjGmapExtension extends Extension
 {
-    public function load(ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container)
     {
-        $locator = new FileLocator(array(__DIR__ . '/../Resources/config'));
-        $loader = new YamlFileLoader($container, $locator);
+        $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yml');
     }
 }
