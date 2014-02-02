@@ -1,3 +1,7 @@
 services:
     hj_gmap.api:
         class: Hj\GmapBundle\Services\Api
+    hj_gmap.response:
+        class: Hj\GmapBundle\Services\Response
+    hj_gmap.mapping:
+        class: Hj\GmapBundle\Services\Mapping

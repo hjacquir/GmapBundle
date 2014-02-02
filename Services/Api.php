@@ -31,7 +31,7 @@ class Api
      * 
      * @return string A formatted string with implode
      */
-    public function formatParameters($parameters)
+    private function formatParameters($parameters)
     {
         return implode(' ', $parameters);
     }
