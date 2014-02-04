@@ -16,20 +16,20 @@ require '../../../../../../vendor/autoload.php';
  */
 class ResponseTest extends UnitTestCase
 {
-    public function testShouldReturnAResponse()
+    /**
+     * @var Response
+     */
+    private $response;
+    
+    public function setUp()
     {
-        $uri = 'fixturesForExistingPlace.json';
-        
-        $response = new Response($uri);
-        $this->assertObjectHasAttribute('arrayResponse', $response);
+        $this->response = new Response();
     }
     
     public function testShouldReturnTheLatitudeAndLongitudeOfAPlace()
     {
         $uri = 'fixturesForExistingPlace.json';
-        
-        $response = new Response($uri);
-        $location = $response->getLocation();
+        $location = $this->response->getLocation($uri);
         
         $this->assertIfTheArrayHasKeyAndValue($location, 'lat', '46.8147221');
         $this->assertIfTheArrayHasKeyAndValue($location, 'lng', '-71.2269929');
@@ -42,8 +42,6 @@ class ResponseTest extends UnitTestCase
     public function testShouldThrowAnExceptionWhenThePlaceIsNotFound()
     {
         $uri = 'fixturesForNotFoundPlace.json';
-        
-        $response = new Response($uri);
-        $location = $response->getLocation();
+        $location = $this->response->getLocation($uri);
     }
 }
