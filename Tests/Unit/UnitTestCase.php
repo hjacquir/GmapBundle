@@ -14,7 +14,7 @@ use \ReflectionClass;
  */
 class UnitTestCase extends PHPUnit_Framework_TestCase
 {
-     /**
+   /**
     * @param Object $object
     * @param string $expectedMethodName
     */
@@ -24,5 +24,16 @@ class UnitTestCase extends PHPUnit_Framework_TestCase
        $method = $class->getMethod($expectedMethodName);
        $message = 'The method : ' . $expectedMethodName . ' does not exist into ' . $method->class;
        $this->assertSame($expectedMethodName, $method->name, $message);
+   }
+   
+   /**
+    * @param array $expectedArray
+    * @param mixed $expectedKey
+    * @param mixed $expectedValue
+    */
+   protected function assertIfTheArrayHasKeyAndValue(array $expectedArray, $expectedKey, $expectedValue)
+   {
+       $this->assertArrayHasKey($expectedKey, $expectedArray);
+       $this->assertSame($expectedValue, $expectedArray[$expectedKey]);
    }
 }

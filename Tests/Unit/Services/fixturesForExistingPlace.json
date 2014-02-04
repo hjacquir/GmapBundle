@@ -1,0 +1,83 @@
+{
+   "results" : [
+      {
+         "address_components" : [
+            {
+               "long_name" : "332",
+               "short_name" : "332",
+               "types" : [ "street_number" ]
+            },
+            {
+               "long_name" : "Rue de la Salle",
+               "short_name" : "Rue de la Salle",
+               "types" : [ "route" ]
+            },
+            {
+               "long_name" : "Saint-Roch",
+               "short_name" : "Saint-Roch",
+               "types" : [ "neighborhood", "political" ]
+            },
+            {
+               "long_name" : "La Cité-Limoilou",
+               "short_name" : "La Cité-Limoilou",
+               "types" : [ "sublocality", "political" ]
+            },
+            {
+               "long_name" : "Québec",
+               "short_name" : "Québec",
+               "types" : [ "locality", "political" ]
+            },
+            {
+               "long_name" : "Communauté-Urbaine-de-Québec",
+               "short_name" : "Communauté-Urbaine-de-Québec",
+               "types" : [ "administrative_area_level_2", "political" ]
+            },
+            {
+               "long_name" : "Québec",
+               "short_name" : "QC",
+               "types" : [ "administrative_area_level_1", "political" ]
+            },
+            {
+               "long_name" : "Canada",
+               "short_name" : "CA",
+               "types" : [ "country", "political" ]
+            },
+            {
+               "long_name" : "G1K",
+               "short_name" : "G1K",
+               "types" : [ "postal_code_prefix", "postal_code" ]
+            }
+         ],
+         "formatted_address" : "332 Rue de la Salle, Québec, QC G1K, Canada",
+         "geometry" : {
+            "bounds" : {
+               "northeast" : {
+                  "lat" : 46.8147221,
+                  "lng" : -71.2269848
+               },
+               "southwest" : {
+                  "lat" : 46.8147107,
+                  "lng" : -71.2269929
+               }
+            },
+            "location" : {
+               "lat" : 46.8147221,
+               "lng" : -71.2269929
+            },
+            "location_type" : "RANGE_INTERPOLATED",
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 46.8160653802915,
+                  "lng" : -71.2256398697085
+               },
+               "southwest" : {
+                  "lat" : 46.81336741970851,
+                  "lng" : -71.22833783029151
+               }
+            }
+         },
+         "types" : [ "street_address" ]
+      }
+   ],
+   "status" : "OK"
+}
