@@ -21,18 +21,12 @@ class Response
     private $arrayResponse;
     
     /**
-     * Return an array response
-     * 
      * @param string $uri The url with parameters use to call the API
-     * 
-     * @return array $arrayResponse The decoded json response in array format
      */
     public function __construct($uri)
     {
         $jsonResponse = file_get_contents($uri);
         $this->arrayResponse = json_decode($jsonResponse, true);
-        
-        return $this->arrayResponse;
     }
     
     /**
@@ -49,8 +43,8 @@ class Response
         }
         
         return array(
-            'lat' => $this->arrayResponse['results'][0]['geometry']['location']['lat'],
-            'lng' => $this->arrayResponse['results'][0]['geometry']['location']['lng'],
+            'lat' => (string) $this->arrayResponse['results'][0]['geometry']['location']['lat'],
+            'lng' => (string) $this->arrayResponse['results'][0]['geometry']['location']['lng'],
         );
         
     }
