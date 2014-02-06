@@ -16,6 +16,8 @@ use \Doctrine\ORM\Mapping as ORM;
  */
 class Adress
 {
+    const CLASS_NAME = __CLASS__;
+    
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -44,9 +46,14 @@ class Adress
     private $streetName;
     
     /**
-     * @ORM\OneToOne(targetEntity="Hj\GmapBundle\Entity\Location", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="Location", cascade={"persist"})
      */
     private $location;
+    
+    /**
+     * @ORM\OneToOne(targetEntity="StaticMap", cascade={"persist"})
+     */
+    private $staticMap;
     
     /**
      * Return the id
@@ -141,10 +148,28 @@ class Adress
     }
     
     /**
-     * @param \Hj\GmapBundle\Entity\Location $location
+     * @param Location $location
      */
     public function setLocation(Location $location)
     {
         $this->location = $location;
+    }
+    
+    /**
+     * Return an static map
+     * 
+     * @return StaticMap
+     */
+    public function getStaticMap()
+    {
+        return $this->staticMap;
+    }
+    
+    /**
+     * @param StaticMap $staticMap
+     */
+    public function setStaticMap(StaticMap $staticMap)
+    {
+        $this->staticMap = $staticMap;
     }
 }

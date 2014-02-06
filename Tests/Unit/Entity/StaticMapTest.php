@@ -6,34 +6,34 @@
 
 namespace Hj\GmapBundle\Tests\Unit\Entity;
 
-use \Hj\GmapBundle\Entity\Adress;
+use \Hj\GmapBundle\Entity\StaticMap;
 use \Hj\GmapBundle\Tests\Unit\UnitTestCase;
 
 require '../../../../../../vendor/autoload.php';
 
 /**
- * @covers \Hj\GmapBundle\Entity\Adress
+ * @covers \Hj\GmapBundle\Entity\StaticMap
  */
-class AdressTest extends UnitTestCase
+class StaticMapTest extends UnitTestCase
 {
     /**
-     * @var Adress
+     * @var StaticMap
      */
-   private $adress;
+    private $staticMap;
     
-   public function setUp()
-   {
-       $this->adress = new Adress();
-   }
-
-   /**
+    public function setUp()
+    {
+        $this->staticMap = new StaticMap();
+    }
+    
+    /**
     * @dataProvider provideSupportedAttributeNameData
     * 
     * @param string $attributeName
     */
    public function testAdressClassShouldHaveAttributes($attributeName)
    {
-       $this->assertClassHasAttribute($attributeName, Adress::CLASS_NAME);
+       $this->assertClassHasAttribute($attributeName, StaticMap::CLASS_NAME);
    }
    
    /**
@@ -43,12 +43,12 @@ class AdressTest extends UnitTestCase
    {
        return array(
            array('id'),
-           array('country'),
-           array('locality'),
-           array('streetNumber'),
-           array('streetName'),
-           array('location'),
-           array('staticMap'),
+           array('zoom'),
+           array('width'),
+           array('height'),
+           array('type'),
+           array('markerColor'),
+           array('label'),
        );
    }
 
@@ -64,14 +64,14 @@ class AdressTest extends UnitTestCase
        $appendedAttribute = ucfirst($expectedAttribute);
        
        $setMethod = 'set' . $appendedAttribute;
-       $this->assertIfTheMethodExist($this->adress, $setMethod);
+       $this->assertIfTheMethodExist($this->staticMap, $setMethod);
        
        $getMethod = 'get' . $appendedAttribute;
-       $this->assertIfTheMethodExist($this->adress, $getMethod);
+       $this->assertIfTheMethodExist($this->staticMap, $getMethod);
        
-       $this->adress->{$setMethod}($expectedValue);
+       $this->staticMap->{$setMethod}($expectedValue);
        
-       $this->assertSame($expectedValue, $this->adress->{$getMethod}());
+       $this->assertSame($expectedValue, $this->staticMap->{$getMethod}());
    }
    
    /**
@@ -80,12 +80,12 @@ class AdressTest extends UnitTestCase
    public function provideGetterAndSetterData()
    {
        return array(
-           array('country', 'Québec'),
-           array('locality', 'Limoilou'),
-           array('streetNumber', 2),
-           array('streetName', 'rue dorchester'),
-           array('location', $this->getMock('Hj\GmapBundle\Entity\Location')),
-           array('staticMap', $this->getMock('Hj\GmapBundle\Entity\StaticMap')),
+           array('zoom', 13),
+           array('width', 300),
+           array('height', 700),
+           array('type', 'testType'),
+           array('markerColor', 'testMarker'),
+           array('label', 'testLabel'),
        );
    }
 }
