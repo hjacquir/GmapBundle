@@ -6,15 +6,14 @@
 
 namespace Hj\GmapBundle\Tests\Unit\Services;
 
+use \Exception;
 use \Hj\GmapBundle\Services\Response;
-use \Hj\GmapBundle\Tests\Unit\UnitTestCase;
-
-require '../../../../../../vendor/autoload.php';
+use \Hj\GmapBundle\Tests\Unit\HjUnitTestCase;
 
 /**
  * @covers \Hj\GmapBundle\Services\Response
  */
-class ResponseTest extends UnitTestCase
+class ResponseTest extends HjUnitTestCase
 {
     /**
      * @var Response
@@ -28,20 +27,21 @@ class ResponseTest extends UnitTestCase
     
     public function testShouldReturnTheLatitudeAndLongitudeOfAPlace()
     {
-        $uri = 'fixturesForExistingPlace.json';
+        $uri = __DIR__ . '/fixturesForExistingPlace.json';
         $location = $this->response->getLocation($uri);
         
-        $this->assertIfTheArrayHasKeyAndValue($location, 'lat', '46.8147221');
-        $this->assertIfTheArrayHasKeyAndValue($location, 'lng', '-71.2269929');
+        $this->hjAssertIfTheArrayHasKeyAndValue($location, 'lat', '46.8147221');
+        $this->hjAssertIfTheArrayHasKeyAndValue($location, 'lng', '-71.2269929');
     }
     
     /**
-     * @expectedException \Exception
+     * @expectedException Exception
      * @expectedExceptionMessage It seems that the location you requested does not exist
      */
     public function testShouldThrowAnExceptionWhenThePlaceIsNotFound()
     {
-        $uri = 'fixturesForNotFoundPlace.json';
+        $uri = __DIR__ . '/fixturesForNotFoundPlace.json';
+        
         $location = $this->response->getLocation($uri);
     }
 }

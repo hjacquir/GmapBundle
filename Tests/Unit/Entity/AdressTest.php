@@ -7,14 +7,12 @@
 namespace Hj\GmapBundle\Tests\Unit\Entity;
 
 use \Hj\GmapBundle\Entity\Adress;
-use \Hj\GmapBundle\Tests\Unit\UnitTestCase;
-
-require '../../../../../../vendor/autoload.php';
+use \Hj\GmapBundle\Tests\Unit\HjUnitTestCase;
 
 /**
  * @covers \Hj\GmapBundle\Entity\Adress
  */
-class AdressTest extends UnitTestCase
+class AdressTest extends HjUnitTestCase
 {
     /**
      * @var Adress
@@ -49,43 +47,6 @@ class AdressTest extends UnitTestCase
            array('streetName'),
            array('location'),
            array('staticMap'),
-       );
-   }
-
-   /**
-    * @dataProvider provideGetterAndSetterData
-    * 
-    * @param string $setter
-    * @param string $getter
-    * @param mixed  $value
-    */
-   public function testShouldGetAndSet($expectedAttribute, $expectedValue)
-   {
-       $appendedAttribute = ucfirst($expectedAttribute);
-       
-       $setMethod = 'set' . $appendedAttribute;
-       $this->assertIfTheMethodExist($this->adress, $setMethod);
-       
-       $getMethod = 'get' . $appendedAttribute;
-       $this->assertIfTheMethodExist($this->adress, $getMethod);
-       
-       $this->adress->{$setMethod}($expectedValue);
-       
-       $this->assertSame($expectedValue, $this->adress->{$getMethod}());
-   }
-   
-   /**
-    * @return array
-    */
-   public function provideGetterAndSetterData()
-   {
-       return array(
-           array('country', 'Québec'),
-           array('locality', 'Limoilou'),
-           array('streetNumber', 2),
-           array('streetName', 'rue dorchester'),
-           array('location', $this->getMock('Hj\GmapBundle\Entity\Location')),
-           array('staticMap', $this->getMock('Hj\GmapBundle\Entity\StaticMap')),
        );
    }
 }

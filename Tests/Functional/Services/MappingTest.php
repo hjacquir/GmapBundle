@@ -13,8 +13,6 @@ use \PHPUnit_Framework_TestCase;
 use \Symfony\Component\Serializer\Encoder\JsonEncoder;
 use \Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
 
-require '../../../../../../vendor/autoload.php';
-
 /**
  * @covers \Hj\GmapBundle\Services\Mapping
  */
@@ -23,13 +21,13 @@ class MappingTest extends PHPUnit_Framework_TestCase
     public function testShouldReturnAnLocationObject()
     {
         $mapping = new Mapping();
-        $response = new Response('fixtures.json');
+        $response = new Response();
         $encoder = new JsonEncoder();
         $normalizer = new GetSetMethodNormalizer();
         /**
          * @var Location
          */
-        $location = $mapping->deserializeLocation($response, $encoder, $normalizer);
+        $location = $mapping->deserializeLocation($response, $encoder, $normalizer, __DIR__ . '/fixtures.json');
         
         $this->assertInstanceOf(Location::CLASS_NAME, $location);
         $this->assertSame('46.8147221', $location->getLat());

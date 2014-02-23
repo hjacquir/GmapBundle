@@ -36,16 +36,6 @@ class Location
     private $lng;
     
     /**
-     * Return the id
-     * 
-     * @return integer $id
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-    
-    /**
      * Return the latitude of a place
      * 
      * @return string

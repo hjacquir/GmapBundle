@@ -7,14 +7,12 @@
 namespace Hj\GmapBundle\Tests\Unit\Entity;
 
 use \Hj\GmapBundle\Entity\StaticMap;
-use \Hj\GmapBundle\Tests\Unit\UnitTestCase;
-
-require '../../../../../../vendor/autoload.php';
+use \Hj\GmapBundle\Tests\Unit\HjUnitTestCase;
 
 /**
  * @covers \Hj\GmapBundle\Entity\StaticMap
  */
-class StaticMapTest extends UnitTestCase
+class StaticMapTest extends HjUnitTestCase
 {
     /**
      * @var StaticMap
@@ -49,43 +47,6 @@ class StaticMapTest extends UnitTestCase
            array('type'),
            array('markerColor'),
            array('label'),
-       );
-   }
-
-   /**
-    * @dataProvider provideGetterAndSetterData
-    * 
-    * @param string $setter
-    * @param string $getter
-    * @param mixed  $value
-    */
-   public function testShouldGetAndSet($expectedAttribute, $expectedValue)
-   {
-       $appendedAttribute = ucfirst($expectedAttribute);
-       
-       $setMethod = 'set' . $appendedAttribute;
-       $this->assertIfTheMethodExist($this->staticMap, $setMethod);
-       
-       $getMethod = 'get' . $appendedAttribute;
-       $this->assertIfTheMethodExist($this->staticMap, $getMethod);
-       
-       $this->staticMap->{$setMethod}($expectedValue);
-       
-       $this->assertSame($expectedValue, $this->staticMap->{$getMethod}());
-   }
-   
-   /**
-    * @return array
-    */
-   public function provideGetterAndSetterData()
-   {
-       return array(
-           array('zoom', 13),
-           array('width', 300),
-           array('height', 700),
-           array('type', 'testType'),
-           array('markerColor', 'testMarker'),
-           array('label', 'testLabel'),
        );
    }
 }

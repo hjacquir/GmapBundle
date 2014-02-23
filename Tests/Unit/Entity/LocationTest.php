@@ -7,14 +7,12 @@
 namespace Hj\GmapBundle\Tests\Unit\Entity;
 
 use \Hj\GmapBundle\Entity\Location;
-use \Hj\GmapBundle\Tests\Unit\UnitTestCase;
-
-require '../../../../../../vendor/autoload.php';
+use \Hj\GmapBundle\Tests\Unit\HjUnitTestCase;
 
 /**
  * @covers \Hj\GmapBundle\Entity\Location
  */
-class LocationTest extends UnitTestCase
+class LocationTest extends HjUnitTestCase
 {
     /**
      * @var Location
@@ -57,17 +55,7 @@ class LocationTest extends UnitTestCase
     */
    public function testShouldGetAndSet($expectedAttribute, $expectedValue)
    {
-       $appendedAttribute = ucfirst($expectedAttribute);
-       
-       $setMethod = 'set' . $appendedAttribute;
-       $this->assertIfTheMethodExist($this->location, $setMethod);
-       
-       $getMethod = 'get' . $appendedAttribute;
-       $this->assertIfTheMethodExist($this->location, $getMethod);
-       
-       $this->location->{$setMethod}($expectedValue);
-       
-       $this->assertSame($expectedValue, $this->location->{$getMethod}());
+       $this->hjAssertThatObjectHaveGetAndSetMethods($this->location, $expectedAttribute, $expectedValue);
    }
    
    /**

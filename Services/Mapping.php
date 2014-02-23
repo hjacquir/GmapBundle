@@ -22,6 +22,7 @@ class Mapping
      * @param Response               $response   The response in array format return by the api
      * @param JsonEncoder            $encoder    The type of encoder needed by the serializer component
      * @param GetSetMethodNormalizer $normalizer The normalizer needed by the serializer component
+     * @param string                 $uri        The uri used to call the API
      * @param string                 $format     The format of data
      * 
      * @return Location The serialized latitude and longitude
@@ -30,9 +31,10 @@ class Mapping
             Response $response, 
             JsonEncoder $encoder, 
             GetSetMethodNormalizer $normalizer,
+            $uri,
             $format = 'json'
     ) {
-        $location = $response->getLocation();
+        $location = $response->getLocation($uri);
         $serializer = new Serializer(array($normalizer), array($encoder));
         
         return $serializer->deserialize(json_encode($location), Location::CLASS_NAME, $format); 

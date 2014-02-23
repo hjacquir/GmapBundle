@@ -7,14 +7,12 @@
 namespace Hj\GmapBundle\Tests\Unit\Services;
 
 use \Hj\GmapBundle\Services\Api;
-use \PHPUnit_Framework_TestCase;
-
-require '../../../../../../vendor/autoload.php';
+use \Hj\GmapBundle\Tests\Unit\HjUnitTestCase;
 
 /**
  * @covers \Hj\GmapBundle\Services\Api
  */
-class ApiTest extends PHPUnit_Framework_TestCase
+class ApiTest extends HjUnitTestCase
 {
     /**
      * @var Api
@@ -43,10 +41,5 @@ class ApiTest extends PHPUnit_Framework_TestCase
         $expectedUrl = 'http://maps.googleapis.com/maps/api/geocode/json?address=2+Lorem+ipsum+dolor+sit+amet+' . 
                 'Angers+FRANCE&sensor=true';
         $this->assertSame($expectedUrl, $this->api->getTheUri($this->parameters));
-    }
-    
-    public function testMethodGetFormatParametersReturnACorrectFormattedString()
-    {
-        $this->assertSame('2 Lorem ipsum dolor sit amet Angers FRANCE', $this->api->formatParameters($this->parameters));
     }
 }
