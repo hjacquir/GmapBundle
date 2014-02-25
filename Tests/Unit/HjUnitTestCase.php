@@ -62,4 +62,14 @@ class HjUnitTestCase extends PHPUnit_Framework_TestCase
        $this->assertArrayHasKey($expectedKey, $expectedArray);
        $this->assertSame($expectedValue, $expectedArray[$expectedKey]);
    }
+   
+   /**
+    * Assert that the given object is an instance of URI
+    * 
+    * @param object $expectedObject
+    */
+   protected function hjAssertInstanceOfUri($expectedObject)
+   {
+       $this->assertInstanceOf('Hj\GmapBundle\Services\Uri', $expectedObject);
+   }
 }
