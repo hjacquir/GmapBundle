@@ -16,6 +16,9 @@ class StaticMapUri extends Uri
      * 
      * @param array $adressComponents An array of adress components
      * @param array $mapComponents    An array of map components
+     * @param string $label           The label of the point
+     * @param string $lat             The latitude of a place
+     * @param string $lng             The longitude of a place
      * 
      * @return string The formatted URI
      */
@@ -38,6 +41,16 @@ class StaticMapUri extends Uri
         return 'staticmap?center=';
     }
     
+    /**
+     * Return a formatted url with map components
+     * 
+     * @param array  $mapComponents An array of map components
+     * @param string $label         The label of the point
+     * @param string $lat           The latitude of a place
+     * @param string $lng           The longitude of a place
+     * 
+     * @return string The formatted url
+     */
     private function encodeMapComponentsAsUrl(array $mapComponents, $label, $lat, $lng)
     {
         return '&' . http_build_query($mapComponents) . 
