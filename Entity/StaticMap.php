@@ -6,58 +6,67 @@
 
 namespace Hj\GmapBundle\Entity;
 
-use \Doctrine\ORM\Mapping as ORM;
+use \Doctrine\ORM\Mapping\Entity;
+use \Doctrine\ORM\Mapping\Table;
+use \Doctrine\ORM\Mapping\Id;
+use \Doctrine\ORM\Mapping\GeneratedValue;
+use \Doctrine\ORM\Mapping\Column;
 use \Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Store the parameter of your static map
  * 
- * @ORM\Entity()
- * @ORM\Table(name="gmap_static_map")
+ * @Entity()
+ * @Table(name="gmap_static_map")
  */
 class StaticMap
 {
     const CLASS_NAME = __CLASS__;
     
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @Id()
+     * @GeneratedValue()
+     * @Column(type="integer")
      */
     private $id;
     
     /**
-     * @ORM\Column(type="smallint", name="zoom")
+     * @Column(name="unique_id", type="string", length=255, unique=true)
+     */
+    private $uniqueId;
+    
+    /**
+     * @Column(type="smallint", name="zoom")
      * @Assert\NotBlank()
      * @Assert\Range(min=0, max=21)
      */
     private $zoom;
     
     /**
-     * @ORM\Column(type="smallint", name="width")
+     * @Column(type="smallint", name="width")
      * 
      * @Assert\NotBlank()
      */
     private $width;
     
     /**
-     * @ORM\Column(type="smallint", name="height")
+     * @Column(type="smallint", name="height")
      * @Assert\NotBlank()
      */
     private $height;
     
     /**
-     * @ORM\Column(type="string", name="type", length=50)
+     * @Column(type="string", name="type", length=50)
      */
     private $type;
     
     /**
-     * @ORM\Column(type="string", name="marker_color", length=50)
+     * @Column(type="string", name="marker_color", length=50)
      */
     private $markerColor;
     
     /**
-     * @ORM\Column(type="string", name="label", length=255)
+     * @Column(type="string", name="label", length=255)
      */
     private $label;
 
@@ -179,5 +188,15 @@ class StaticMap
     public function setLabel($label)
     {
         $this->label = $label;
+    }
+    
+    /**
+     * Define the static map unique id
+     * 
+     * @param string $uniqueId
+     */
+    public function setUniqueId($uniqueId)
+    {
+        $this->uniqueId = $uniqueId;
     }
 }

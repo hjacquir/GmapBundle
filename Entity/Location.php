@@ -6,32 +6,41 @@
 
 namespace Hj\GmapBundle\Entity;
 
-use \Doctrine\ORM\Mapping as ORM;
+use \Doctrine\ORM\Mapping\Entity;
+use \Doctrine\ORM\Mapping\Table;
+use \Doctrine\ORM\Mapping\Id;
+use \Doctrine\ORM\Mapping\GeneratedValue;
+use \Doctrine\ORM\Mapping\Column;
 
 /**
  * Contains the latitude and longitude of a place
  * 
- * @ORM\Entity()
- * @ORM\Table(name="gmap_location")
+ * @Entity()
+ * @Table(name="gmap_location")
  */
 class Location
 {
     const CLASS_NAME = __CLASS__;
     
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @Id()
+     * @GeneratedValue()
+     * @Column(type="integer")
      */
     private $id;
     
     /**
-     * @ORM\Column(type="string", name="latitude", length = 255)
+     * @Column(name="unique_id", type="string", length=255, unique=true)
+     */
+    private $uniqueId;
+    
+    /**
+     * @Column(type="string", name="latitude", length = 255)
      */
     private $lat;
     
     /**
-     * @ORM\Column(type="string", name="longitude", length = 255)
+     * @Column(type="string", name="longitude", length = 255)
      */
     private $lng;
     
@@ -73,5 +82,15 @@ class Location
     public function setLng($lng)
     {
         $this->lng = $lng;
+    }
+    
+    /**
+     * Define the location unique id
+     * 
+     * @param string $uniqueId
+     */
+    public function setUniqueId($uniqueId)
+    {
+        $this->uniqueId = $uniqueId;
     }
 }

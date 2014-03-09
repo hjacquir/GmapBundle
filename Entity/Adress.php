@@ -6,28 +6,38 @@
 
 namespace Hj\GmapBundle\Entity;
 
-use \Doctrine\ORM\Mapping as ORM;
+use \Doctrine\ORM\Mapping\Entity;
+use \Doctrine\ORM\Mapping\Id;
+use \Doctrine\ORM\Mapping\GeneratedValue;
+use \Doctrine\ORM\Mapping\Column;
+use \Doctrine\ORM\Mapping\OneToOne;
+use \Doctrine\ORM\Mapping\Table;
 use \Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Contain the adress of the place
  * 
- * @ORM\Entity()
- * @ORM\Table(name="gmap_adress")
+ * @Entity()
+ * @Table(name="gmap_adress")
  */
 class Adress
 {
     const CLASS_NAME = __CLASS__;
     
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @Id()
+     * @GeneratedValue()
+     * @Column(type="integer")
      */
     private $id;
     
     /**
-     * @ORM\Column(type="string", name="country", length=100)
+     * @Column(name="unique_id", type="string", length=255, unique=true)
+     */
+    private $uniqueId;
+    
+    /**
+     * @Column(type="string", name="country", length=100)
      * 
      * @Assert\NotBlank()
      * @Assert\Length(max=100)
@@ -36,19 +46,19 @@ class Adress
     private $country;
     
     /**
-     * @ORM\Column(type="string", name="locality", length=100, nullable=true)
+     * @Column(type="string", name="locality", length=100, nullable=true)
      * 
      * @Assert\Length(max=100)
      */
     private $locality;
     
     /**
-     * @ORM\Column(type="smallint", name="street_number", nullable=true)
+     * @Column(type="smallint", name="street_number", nullable=true)
      */
     private $streetNumber;
     
     /**
-     * @ORM\Column(type="string", name="street_name", length=255)
+     * @Column(type="string", name="street_name", length=255)
      * 
      * @Assert\NotBlank()
      * @Assert\Length(max=255)
@@ -56,12 +66,12 @@ class Adress
     private $streetName;
     
     /**
-     * @ORM\OneToOne(targetEntity="Location", cascade={"persist"})
+     * @OneToOne(targetEntity="Location")
      */
     private $location;
     
     /**
-     * @ORM\OneToOne(targetEntity="StaticMap", cascade={"persist"})
+     * @OneToOne(targetEntity="StaticMap")
      */
     private $staticMap;
     
@@ -177,5 +187,15 @@ class Adress
     public function setStaticMap($staticMap)
     {
         $this->staticMap = $staticMap;
+    }
+    
+    /**
+     * Define the adress unique id
+     * 
+     * @param string $uniqueId
+     */
+    public function setUniqueId($uniqueId)
+    {
+        $this->uniqueId = $uniqueId;
     }
 }

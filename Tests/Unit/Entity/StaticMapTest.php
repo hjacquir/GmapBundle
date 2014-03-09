@@ -47,6 +47,7 @@ class StaticMapTest extends HjUnitTestCase
            array('type'),
            array('markerColor'),
            array('label'),
+           array('uniqueId'),
        );
    }
    

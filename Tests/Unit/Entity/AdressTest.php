@@ -47,6 +47,7 @@ class AdressTest extends HjUnitTestCase
            array('streetName'),
            array('location'),
            array('staticMap'),
+           array('uniqueId'),
        );
    }
    
