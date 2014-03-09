@@ -6,6 +6,7 @@
 
 namespace Hj\GmapBundle\Tests\Unit;
 
+use \PHPUnit_Framework_MockObject_MockObject;
 use \PHPUnit_Framework_TestCase;
 use \ReflectionClass;
 
@@ -71,5 +72,25 @@ class HjUnitTestCase extends PHPUnit_Framework_TestCase
    protected function hjAssertInstanceOfUri($expectedObject)
    {
        $this->assertInstanceOf('Hj\GmapBundle\Services\Uri', $expectedObject);
+   }
+   
+   /**
+    * @return PHPUnit_Framework_MockObject_MockObject
+    */
+   protected function getMockLocationEntity()
+   {
+       return $this->getMockBuilder('Hj\GmapBundle\Entity\Location')
+               ->disableOriginalConstructor()
+               ->getMock();
+   }
+   
+   /**
+    * @return PHPUnit_Framework_MockObject_MockObject
+    */
+   protected function getMockStaticMapEntity()
+   {
+       return $this->getMockBuilder('Hj\GmapBundle\Entity\StaticMap')
+               ->disableOriginalConstructor()
+               ->getMock();
    }
 }

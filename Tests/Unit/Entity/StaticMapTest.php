@@ -49,4 +49,27 @@ class StaticMapTest extends HjUnitTestCase
            array('label'),
        );
    }
+   
+   /**
+    * @dataProvider provideSupportedAttributeandValueData
+    * 
+    * @param string $expectedAttribute
+    * @param mixed  $expectedValue
+    */
+   public function testShouldHaveGetterAndSetterForAttributes($expectedAttribute, $expectedValue)
+   {
+       $this->hjAssertThatObjectHaveGetAndSetMethods($this->staticMap, $expectedAttribute, $expectedValue);
+   }
+   
+   public function provideSupportedAttributeandValueData()
+   {
+       return array(
+           array('zoom', 21),
+           array('width', 785),
+           array('height', 500),
+           array('type', 'hgfhgsf'),
+           array('markerColor', 'fhfg'),
+           array('label', 'dfgf'),
+       );
+   }
 }

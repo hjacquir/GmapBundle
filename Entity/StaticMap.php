@@ -7,6 +7,7 @@
 namespace Hj\GmapBundle\Entity;
 
 use \Doctrine\ORM\Mapping as ORM;
+use \Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Store the parameter of your static map
@@ -27,16 +28,21 @@ class StaticMap
     
     /**
      * @ORM\Column(type="smallint", name="zoom")
+     * @Assert\NotBlank()
+     * @Assert\Range(min=0, max=21)
      */
     private $zoom;
     
     /**
      * @ORM\Column(type="smallint", name="width")
+     * 
+     * @Assert\NotBlank()
      */
     private $width;
     
     /**
      * @ORM\Column(type="smallint", name="height")
+     * @Assert\NotBlank()
      */
     private $height;
     
@@ -54,4 +60,124 @@ class StaticMap
      * @ORM\Column(type="string", name="label", length=255)
      */
     private $label;
+
+    /**
+     * Return the zoom of the map
+     * 
+     * @return integer
+     */
+    public function getZoom()
+    {
+        return $this->zoom;
+    }
+    
+    /**
+     * Return the width of the map
+     * 
+     * @return integer
+     */
+    public function getWidth()
+    {
+        return $this->width;
+    }
+    
+    /**
+     * Return the height of the map
+     * 
+     * @return integer
+     */
+    public function getHeight()
+    {
+        return $this->height;
+    }
+    
+    /**
+     * Return the type of the map
+     * 
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+    
+    /**
+     * Return the color used to mark the point on the map
+     * 
+     * @return string
+     */
+    public function getMarkerColor()
+    {
+        return $this->markerColor;
+    }
+    
+    /**
+     * Return the label of the point on the map
+     * 
+     * @return string
+     */
+    public function getLabel()
+    {
+        return $this->label;
+    }
+    
+    /**
+     * Set the zoom
+     * 
+     * @param integer $zoom
+     */
+    public function setZoom($zoom)
+    {
+        $this->zoom = $zoom;
+    }
+    
+    /**
+     * Set the width
+     * 
+     * @param type $width
+     */
+    public function setWidth($width)
+    {
+        $this->width = $width;
+    }
+    
+    /**
+     * Set the height
+     * 
+     * @param integer $height
+     */
+    public function setHeight($height)
+    {
+        $this->height = $height;
+    }
+    
+    /**
+     * Set the type
+     * 
+     * @param string $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+    
+    /**
+     * Set the color of the marker
+     * 
+     * @param string $markerColor
+     */
+    public function setMarkerColor($markerColor)
+    {
+        $this->markerColor = $markerColor;
+    }
+    
+    /**
+     * Set the label to display the point
+     * 
+     * @param string $label
+     */
+    public function setLabel($label)
+    {
+        $this->label = $label;
+    }
 }

@@ -49,4 +49,27 @@ class AdressTest extends HjUnitTestCase
            array('staticMap'),
        );
    }
+   
+   /**
+    * @dataProvider provideSupportedAttributesAndValues
+    * 
+    * @param string $expectedAttribute
+    * @param mixed  $expectedValue
+    */
+   public function testGetterAndSetterForAttributes($expectedAttribute, $expectedValue)
+   {
+       $this->hjAssertThatObjectHaveGetAndSetMethods($this->adress, $expectedAttribute, $expectedValue);
+   }
+   
+   public function provideSupportedAttributesAndValues()
+   {
+       return array(
+           array('country', 'Canada'),
+           array('locality', 'Québec'),
+           array('streetNumber', 125),
+           array('streetName', 'areyghgh'),
+           array('location', $this->getMockLocationEntity()),
+           array('staticMap', $this->getMockStaticMapEntity()),
+       );
+   }
 }
