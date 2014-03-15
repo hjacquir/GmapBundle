@@ -43,7 +43,6 @@ class LocationTest extends HjUnitTestCase
            array('id'),
            array('lat'),
            array('lng'),
-           array('uniqueId'),
        );
    }
 

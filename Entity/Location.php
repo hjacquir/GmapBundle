@@ -30,11 +30,6 @@ class Location
     private $id;
     
     /**
-     * @Column(name="unique_id", type="string", length=255, unique=true)
-     */
-    private $uniqueId;
-    
-    /**
      * @Column(type="string", name="latitude", length = 255)
      */
     private $lat;
@@ -82,15 +77,5 @@ class Location
     public function setLng($lng)
     {
         $this->lng = $lng;
-    }
-    
-    /**
-     * Define the location unique id
-     * 
-     * @param string $uniqueId
-     */
-    public function setUniqueId($uniqueId)
-    {
-        $this->uniqueId = $uniqueId;
     }
 }

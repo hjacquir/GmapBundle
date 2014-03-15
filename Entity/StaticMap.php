@@ -31,11 +31,6 @@ class StaticMap
     private $id;
     
     /**
-     * @Column(name="unique_id", type="string", length=255, unique=true)
-     */
-    private $uniqueId;
-    
-    /**
      * @Column(type="smallint", name="zoom")
      * @Assert\NotBlank()
      * @Assert\Range(min=0, max=21)
@@ -188,15 +183,5 @@ class StaticMap
     public function setLabel($label)
     {
         $this->label = $label;
-    }
-    
-    /**
-     * Define the static map unique id
-     * 
-     * @param string $uniqueId
-     */
-    public function setUniqueId($uniqueId)
-    {
-        $this->uniqueId = $uniqueId;
     }
 }
