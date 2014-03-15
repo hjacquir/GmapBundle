@@ -73,4 +73,16 @@ class AdressTest extends HjUnitTestCase
            array('staticMap', $this->getMockStaticMapEntity()),
        );
    }
+   
+   public function testShouldGenerateAnUniqueIdInCorrectFormat()
+   {
+       $this->adress->setStreetNumber(452);
+       $this->adress->setStreetName('a street Name');
+       $this->adress->setLocality('a Locality name');
+       $this->adress->setCountry('a country Name');
+       
+       $expectedUniqueId = '452__a_street_name__a_locality_name__a_country_name'; 
+       
+       $this->assertSame($expectedUniqueId, $this->adress->generateAnUniqueId());
+   }
 }

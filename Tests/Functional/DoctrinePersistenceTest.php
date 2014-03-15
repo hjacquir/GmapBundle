@@ -14,7 +14,9 @@ use \Hj\GmapBundle\Entity\StaticMap;
 use \PHPUnit_Framework_TestCase;
 
 /**
- * Functional test to improve the persistence of doctrine entitys
+ * Functional test to improve the persistence of doctrine entities
+ * 
+ * @medium
  */
 class DoctrinePersistenceTest extends PHPUnit_Framework_TestCase
 {
@@ -54,30 +56,13 @@ class DoctrinePersistenceTest extends PHPUnit_Framework_TestCase
         $connection->executeUpdate($staticMap);
         $connection->executeQuery('SET FOREIGN_KEY_CHECKS = 1;');
     }
-    
+
     public function testShouldPersistAdress()
     {
-        $adress = new Adress();
-        $adress->setUniqueId('adress_sdfds');
-        $adress->setCountry('sdfds');
-        $adress->setLocality('sdfd');
-        $adress->setStreetName('dfdsf');
-        $adress->setStreetNumber(452);
-        
-        $location = new Location();
-        $location->setUniqueId('location_4522');
-        $location->setLat(4522.255);
-        $location->setLng(896.55);
-        
-        $staticMap = new StaticMap();
-        $staticMap->setUniqueId('staticMap_455');
-        $staticMap->setHeight(455);
-        $staticMap->setWidth(885);
-        $staticMap->setMarkerColor('sdfsd');
-        $staticMap->setLabel('sdsdf');
-        $staticMap->setZoom(245);
-        $staticMap->setType('sdfds');
-        
+        $adress    = $this->giveAnAdress();
+        $location  = $this->giveAnLocation();
+        $staticMap = $this->giveAStaticMap();
+
         $adress->setLocation($location);
         $adress->setStaticMap($staticMap);
         
@@ -87,30 +72,32 @@ class DoctrinePersistenceTest extends PHPUnit_Framework_TestCase
         $this->em->flush();
         $this->em->clear();
         
-        $this->assertPersistenceOfAdress(
-                'adress_sdfds', 
-                'location_4522', 
-                'staticMap_455', 
-                'sdfds', 
-                'sdfd', 
-                'dfdsf', 
+        $adressUniqueId = '452' . 
+                Adress::DOUBLE_SEPARATOR . 
+                'a_street_name' . 
+                Adress::DOUBLE_SEPARATOR . 
+                'a_locality_name' . 
+                Adress::DOUBLE_SEPARATOR . 
+                'a_country_name';
+        
+        $this->assertAdressPersistence(
+                $adressUniqueId, 
+                'a country name', 
+                'a locality name', 
+                'a street name', 
                 452
         );
     }
     
     /**
      * @param string $adressUniqueId
-     * @param string $locationUniqueId
-     * @param string $staticMapUniqueId
      * @param string $country
      * @param string $locality
      * @param string $streetName
      * @param string $streetNumber
      */
-    private function assertPersistenceOfAdress(
+    private function assertAdressPersistence(
             $adressUniqueId, 
-            $locationUniqueId,
-            $staticMapUniqueId, 
             $country, 
             $locality, 
             $streetName, 
@@ -122,17 +109,52 @@ class DoctrinePersistenceTest extends PHPUnit_Framework_TestCase
         $adress = $this->em->getRepository(Adress::CLASS_NAME)
                 ->findOneBy(array('uniqueId' => $adressUniqueId));
         
-        $location = $this->em->getRepository(Location::CLASS_NAME)
-                ->findOneBy(array('uniqueId' => $locationUniqueId));
-        
-        $staticMap = $this->em->getRepository(StaticMap::CLASS_NAME)
-                ->findOneBy(array('uniqueId' => $staticMapUniqueId));
-        
-        $this->assertSame($location, $adress->getLocation(), 'The adress location is not as expected');
-        $this->assertSame($staticMap, $adress->getStaticMap(), 'The adress static map is not as expected');
         $this->assertSame($country, $adress->getCountry(), 'The adress country is not as expected');
         $this->assertSame($locality, $adress->getLocality(), 'The adress locality is not as expected');
         $this->assertSame($streetName, $adress->getStreetName(), 'The adress street name is not as expected');
         $this->assertSame($streetNumber, $adress->getStreetNumber(), 'The adress street number is not as expected');
+    }
+    
+    
+    /**
+     * @return Adress
+     */
+    private function giveAnAdress()
+    {
+        $adress = new Adress();
+        $adress->setCountry('a country name');
+        $adress->setLocality('a locality name');
+        $adress->setStreetName('a street name');
+        $adress->setStreetNumber(452);
+        
+        return $adress;
+    }
+    
+    /**
+     * @return Location
+     */
+    private function giveAnLocation()
+    {
+        $location = new Location();
+        $location->setLat(4522.255);
+        $location->setLng(896.55);
+        
+        return $location;
+    }
+    
+    /**
+     * @return StaticMap
+     */
+    private function giveAStaticMap()
+    {
+        $staticMap = new StaticMap();
+        $staticMap->setHeight(455);
+        $staticMap->setWidth(885);
+        $staticMap->setMarkerColor('sdfsd');
+        $staticMap->setLabel('sdsdf');
+        $staticMap->setZoom(245);
+        $staticMap->setType('sdfds');
+        
+        return $staticMap;
     }
 }

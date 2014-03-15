@@ -12,6 +12,9 @@ use \Doctrine\ORM\Mapping\GeneratedValue;
 use \Doctrine\ORM\Mapping\Column;
 use \Doctrine\ORM\Mapping\OneToOne;
 use \Doctrine\ORM\Mapping\Table;
+use \Doctrine\ORM\Mapping\HasLifecycleCallbacks;
+use \Doctrine\ORM\Mapping\PrePersist;
+use \Doctrine\ORM\Mapping\PreUpdate;
 use \Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -19,10 +22,13 @@ use \Symfony\Component\Validator\Constraints as Assert;
  * 
  * @Entity()
  * @Table(name="gmap_adress")
+ * @HasLifecycleCallbacks()
  */
 class Adress
 {
     const CLASS_NAME = __CLASS__;
+    const DOUBLE_SEPARATOR = '__';
+    const SIMPLE_SEPARATOR = '_';
     
     /**
      * @Id()
@@ -32,7 +38,7 @@ class Adress
     private $id;
     
     /**
-     * @Column(name="unique_id", type="string", length=255, unique=true)
+     * @Column(name="unique_id", type="string", unique=true)
      */
     private $uniqueId;
     
@@ -46,14 +52,14 @@ class Adress
     private $country;
     
     /**
-     * @Column(type="string", name="locality", length=100, nullable=true)
+     * @Column(type="string", name="locality", length=100)
      * 
      * @Assert\Length(max=100)
      */
     private $locality;
     
     /**
-     * @Column(type="smallint", name="street_number", nullable=true)
+     * @Column(type="smallint", name="street_number")
      */
     private $streetNumber;
     
@@ -192,10 +198,45 @@ class Adress
     /**
      * Define the adress unique id
      * 
-     * @param string $uniqueId
+     * @PrePersist()
+     * @PreUpdate()
      */
-    public function setUniqueId($uniqueId)
+    public function setUniqueId()
     {
+        $uniqueId = $this->generateAnUniqueId();
+        
         $this->uniqueId = $uniqueId;
+    }
+    
+    /**
+     * Return a formatted unique id
+     * 
+     * @return string
+     */
+    public function generateAnUniqueId()
+    {
+        return $this->streetNumber . 
+                self::DOUBLE_SEPARATOR . 
+                $this->formatString($this->streetName) . 
+                self::DOUBLE_SEPARATOR . 
+                $this->formatString($this->locality) . 
+                self::DOUBLE_SEPARATOR . 
+                $this->formatString($this->country);
+    }
+    
+    /**
+     * Return a formatted string used into unique id
+     * 
+     * @param string $initialString
+     * 
+     * @return string $formattedString
+     */
+    private function formatString($initialString)
+    {
+        $formattedString = trim($initialString);
+        $formattedString = strtolower($formattedString);
+        $formattedString = str_replace(' ', self::SIMPLE_SEPARATOR, $formattedString);
+        
+        return $formattedString;
     }
 }

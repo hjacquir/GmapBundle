@@ -12,7 +12,10 @@
          stopOnIncomplete="false"
          stopOnSkipped="false"
          strict="true"
-         verbose="true">
+         verbose="true"
+         timeoutForSmallTests="1"
+         timeoutForMediumTests="5"
+         timeoutForLargeTests="10">
     <testsuites>
         <testsuite name="Unit">
             <directory>Unit</directory>
