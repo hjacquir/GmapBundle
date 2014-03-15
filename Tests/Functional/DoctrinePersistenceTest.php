@@ -87,6 +87,8 @@ class DoctrinePersistenceTest extends PHPUnit_Framework_TestCase
                 'a street name', 
                 452
         );
+        
+        return $adress;
     }
     
     /**
@@ -115,7 +117,36 @@ class DoctrinePersistenceTest extends PHPUnit_Framework_TestCase
         $this->assertSame($streetNumber, $adress->getStreetNumber(), 'The adress street number is not as expected');
     }
     
+    /**
+     * @depends testShouldPersistAdress
+     * 
+     * @param Adress $adress
+     */
+    public function testShouldPersistAnLocation(Adress $adress)
+    {
+        $location = $adress->getLocation();
+        
+        $this->assertSame(4522.255, $location->getLat(), 'The latitude of the place is not as expected');
+        $this->assertSame(896.55, $location->getLng(), 'The longitude of the place is not as expected');
+    }
     
+    /**
+     * @depends testShouldPersistAdress
+     * 
+     * @param Adress $adress
+     */
+    public function testShouldPersistAnStaticMap(Adress $adress)
+    {
+        $staticMap = $adress->getStaticMap();
+        
+        $this->assertSame(245, $staticMap->getZoom(), 'The zoom is not as expecte');
+        $this->assertSame(455, $staticMap->getHeight(), 'The height is not as expected');
+        $this->assertSame('sdsdf', $staticMap->getLabel(), 'The label is not as expected');
+        $this->assertSame('sdfsd', $staticMap->getMarkerColor(), 'The marker color is not as expected');
+        $this->assertSame('sdfds', $staticMap->getType(), 'The type is not as expected');
+        $this->assertSame(885, $staticMap->getWidth(), 'The width is not as expecte');
+    }
+
     /**
      * @return Adress
      */
