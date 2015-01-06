@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <parameters>
+        <parameter key="symfony.response.class">Symfony\Component\HttpFoundation\Response</parameter>
+        <parameter key="symfony.route_collection.class">Symfony\Component\Routing\RouteCollection</parameter>
+        <parameter key="hj_gmap.loader.route.class">Hj\GmapBundle\Loader\Route</parameter>
+        <parameter key="hj_gmap.default_controller.class">Hj\GmapBundle\Controller\DefaultController</parameter>
+    </parameters>
+
+    <services>
+        <service id="symfony.response" class="%symfony.response.class%"></service>
+        <service id="symfony.route_collection" class="%symfony.route_collection.class%"></service>
+        <service id="hj_gmap.loader.route" class="%hj_gmap.loader.route.class%">
+            <argument type="service" id="symfony.route_collection" />
+            <tag name="routing.loader" />
+        </service>
+        <service id="hj_gmap.default_controller" class="%hj_gmap.default_controller.class%">
+            <argument type="service" id="symfony.response" />
+            <argument type="service" id="twig" />
+        </service>
+    </services>
+</container>
