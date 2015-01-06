@@ -13,4 +13,5 @@ use \Symfony\Component\HttpKernel\Bundle\Bundle;
  */
 class HjGmapBundle extends Bundle
 {
+    const SUFFIX_BUNDLE_NAME = 'hj_gmapBundle_';
 }
