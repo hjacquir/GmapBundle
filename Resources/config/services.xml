@@ -19,7 +19,7 @@
         </service>
         <service id="hj_gmap.default_controller" class="%hj_gmap.default_controller.class%">
             <argument type="service" id="symfony.response" />
-            <argument type="service" id="twig" />
+            <argument type="service" id="templating" />
         </service>
     </services>
 </container>
