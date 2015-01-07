@@ -13,9 +13,12 @@
          stopOnSkipped="false"
          strict="true"
          verbose="true"
-         timeoutForSmallTests="1"
-         timeoutForMediumTests="5"
-         timeoutForLargeTests="10">
+         timeoutForSmallTests="10"
+         timeoutForMediumTests="20"
+         timeoutForLargeTests="30">
+    <php>
+        <server name="KERNEL_DIR" value="../../../../app/" />
+    </php>
     <testsuites>
         <testsuite name="Unit">
             <directory>Unit</directory>
