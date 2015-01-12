@@ -6,36 +6,25 @@
 
 namespace Hj\GmapBundle\Entity;
 
-use \Doctrine\ORM\Mapping\Entity;
-use \Doctrine\ORM\Mapping\Table;
-use \Doctrine\ORM\Mapping\Id;
-use \Doctrine\ORM\Mapping\GeneratedValue;
-use \Doctrine\ORM\Mapping\Column;
-
 /**
  * Contains the latitude and longitude of a place
- * 
- * @Entity()
- * @Table(name="gmap_location")
  */
 class Location
 {
     const CLASS_NAME = __CLASS__;
-    
+
     /**
-     * @Id()
-     * @GeneratedValue()
-     * @Column(type="integer")
+     * @var int
      */
     private $id;
-    
+
     /**
-     * @Column(type="string", name="latitude", length = 255)
+     * @var string
      */
     private $lat;
-    
+
     /**
-     * @Column(type="string", name="longitude", length = 255)
+     * @var string
      */
     private $lng;
     

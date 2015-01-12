@@ -18,54 +18,53 @@ class LocationTest extends HjUnitTestCase
      * @var Location
      */
     private $location;
-    
+
     public function setUp()
     {
         $this->location = new Location();
     }
-    
-     /**
-    * @dataProvider provideSupportedAttributeNameData
-    * 
-    * @param string $attributeName
-    */
-   public function testAdressClassShouldHaveAttributes($attributeName)
-   {
-       $this->assertClassHasAttribute($attributeName, Location::CLASS_NAME);
-   }
-   
-   /**
-    * @return array
-    */
-   public function provideSupportedAttributeNameData()
-   {
-       return array(
-           array('id'),
-           array('lat'),
-           array('lng'),
-       );
-   }
 
-   /**
-    * @dataProvider provideGetterAndSetterData
-    * 
-    * @param string $setter
-    * @param string $getter
-    * @param mixed  $value
-    */
-   public function testShouldGetAndSet($expectedAttribute, $expectedValue)
-   {
-       $this->hjAssertThatObjectHaveGetAndSetMethods($this->location, $expectedAttribute, $expectedValue);
-   }
-   
-   /**
-    * @return array
-    */
-   public function provideGetterAndSetterData()
-   {
-       return array(
-           array('lat', '4452.255'),
-           array('lng', '-47558.25'),
-       );
-   }
+    /**
+     * @dataProvider provideSupportedAttributeNameData
+     *
+     * @param string $attributeName
+     */
+    public function testAdressClassShouldHaveAttributes($attributeName)
+    {
+        $this->assertClassHasAttribute($attributeName, Location::CLASS_NAME);
+    }
+
+    /**
+     * @return array
+     */
+    public function provideSupportedAttributeNameData()
+    {
+        return array(
+            array('id'),
+            array('lat'),
+            array('lng'),
+        );
+    }
+
+    /**
+     * @dataProvider provideGetterAndSetterData
+     *
+     * @param string $expectedAttribute
+     * @param string $expectedValue
+     */
+    public function testShouldGetAndSet($expectedAttribute, $expectedValue)
+    {
+        $this->hjAssertThatObjectHaveGetAndSetMethods($this->location, $expectedAttribute, $expectedValue);
+    }
+
+    /**
+     * @return array
+     */
+    public function provideGetterAndSetterData()
+    {
+        return array(
+            array('lat', '4452.255'),
+            array('lng', '-47558.25'),
+        );
+    }
 }
