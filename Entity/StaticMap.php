@@ -6,62 +6,45 @@
 
 namespace Hj\GmapBundle\Entity;
 
-use \Doctrine\ORM\Mapping\Entity;
-use \Doctrine\ORM\Mapping\Table;
-use \Doctrine\ORM\Mapping\Id;
-use \Doctrine\ORM\Mapping\GeneratedValue;
-use \Doctrine\ORM\Mapping\Column;
-use \Symfony\Component\Validator\Constraints as Assert;
-
 /**
- * Store the parameter of your static map
- * 
- * @Entity()
- * @Table(name="gmap_static_map")
+ * Store the parameter of our static map
  */
 class StaticMap
 {
     const CLASS_NAME = __CLASS__;
-    
+
     /**
-     * @Id()
-     * @GeneratedValue()
-     * @Column(type="integer")
+     * @var int
      */
     private $id;
-    
+
     /**
-     * @Column(type="smallint", name="zoom")
-     * @Assert\NotBlank()
-     * @Assert\Range(min=0, max=21)
+     * @var int
      */
     private $zoom;
-    
+
     /**
-     * @Column(type="smallint", name="width")
-     * 
-     * @Assert\NotBlank()
+     * @var int
      */
     private $width;
-    
+
     /**
-     * @Column(type="smallint", name="height")
-     * @Assert\NotBlank()
+     * @var int
      */
     private $height;
-    
+
     /**
-     * @Column(type="string", name="type", length=50)
+     * @var string
      */
     private $type;
-    
+
     /**
-     * @Column(type="string", name="marker_color", length=50)
+     * @var string
      */
     private $markerColor;
-    
+
     /**
-     * @Column(type="string", name="label", length=255)
+     * @var string
      */
     private $label;
 
@@ -138,7 +121,7 @@ class StaticMap
     /**
      * Set the width
      * 
-     * @param type $width
+     * @param integer $width
      */
     public function setWidth($width)
     {
@@ -183,5 +166,41 @@ class StaticMap
     public function setLabel($label)
     {
         $this->label = $label;
+    }
+    
+    /**
+     * @param array $array
+     * 
+     * @return StaticMap
+     */
+    public static function fromArray(array $array)
+    {
+        $staticMap = new self();
+        
+        if (isset($array['zoom'])) {
+            $staticMap->setZoom($array['zoom']);
+        }
+        
+        if (isset($array['height'])) {
+            $staticMap->setHeight($array['height']);
+        }
+        
+        if (isset($array['label'])) {
+            $staticMap->setLabel($array['label']);
+        }
+        
+        if (isset($array['markerColor'])) {
+            $staticMap->setMarkerColor($array['markerColor']);
+        }
+        
+        if (isset($array['type'])) {
+            $staticMap->setType($array['type']);
+        }
+        
+        if (isset($array['width'])) {
+            $staticMap->setWidth($array['width']);
+        }
+        
+        return $staticMap;
     }
 }

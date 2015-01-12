@@ -1,0 +1,17 @@
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                    http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Hj\GmapBundle\Entity\StaticMap" table="gmap_static_map">
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO" />
+        </id>
+        <field name="zoom" column="zoom" type="smallint" />
+        <field name="width" column="width" type="smallint" />
+        <field name="height" column="height" type="smallint" />
+        <field name="type" column="type" type="string" length="50" />
+        <field name="markerColor" column="marker_color" type="string" length="50" />
+        <field name="label" column="label" type="string" length="255" />
+    </entity>
+</doctrine-mapping>

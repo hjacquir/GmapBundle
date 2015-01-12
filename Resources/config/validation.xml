@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
+
+    <class name="Hj\GmapBundle\Entity\StaticMap">
+
+        <property name="zoom">
+            <constraint name="NotBlank" />
+            <constraint name="Range">
+                <option name="min">0</option>
+                <option name="max">21</option>
+            </constraint>
+        </property>
+
+        <property name="width">
+            <constraint name="NotBlank" />
+        </property>
+
+        <property name="height">
+            <constraint name="NotBlank" />
+        </property>
+
+    </class>
+
+    <class name="Hj\GmapBundle\Entity\Address">
+
+        <property name="country">
+            <constraint name="NotBlank" />
+            <constraint name="Length">
+                <option name="min">0</option>
+                <option name="max">100</option>
+            </constraint>
+            <constraint name="Country" />
+        </property>
+
+        <property name="locality">
+            <constraint name="Length">
+                <option name="min">0</option>
+                <option name="max">100</option>
+            </constraint>
+        </property>
+
+        <property name="streetName">
+            <constraint name="NotBlank" />
+            <constraint name="Length">
+                <option name="min">0</option>
+                <option name="max">255</option>
+            </constraint>
+        </property>
+    </class>
+</constraint-mapping>
