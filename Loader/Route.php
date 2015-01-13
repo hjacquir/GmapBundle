@@ -18,8 +18,8 @@ use Symfony\Component\Routing\RouteCollection;
  */
 class Route extends Loader
 {
-    const RESOURCE      = '@HjGmapBundle/Resources/config/routing.yml';
-    const TYPE          = 'yaml';
+    const RESOURCE = '@HjGmapBundle/Resources/config/routing.yml';
+    const TYPE = 'yaml';
     const RESOURCE_TYPE = 'extra';
 
     /**

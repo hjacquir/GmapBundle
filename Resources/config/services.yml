@@ -1,9 +1,0 @@
-services:
-    hj_gmap.locationUri:
-        class: Hj\GmapBundle\Services\LocationUri
-    hj_gmap.staticMapUri:
-        class: Hj\GmapBundle\Services\StaticMapUri
-    hj_gmap.response:
-        class: Hj\GmapBundle\Services\Response
-    hj_gmap.mapping:
-        class: Hj\GmapBundle\Services\Mapping

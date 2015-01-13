@@ -18,28 +18,28 @@ class UriTest extends HjUnitTestCase
      * @var Uri
      */
     private $uri;
-    
+
     public function setUp()
     {
         $this->uri = $this->getMockForAbstractClass('Hj\GmapBundle\Services\Uri');
     }
-    
+
     public function testShouldHaveABaseUrlByDefault()
     {
         $this->assertAttributeEquals('http://maps.googleapis.com/maps/api/', 'baseUrl', $this->uri);
     }
-    
+
     public function testShouldGetTheUri()
     {
-        $adressComponents = array(
+        $addressComponents = array(
             'streetNumber' => '221',
-            'streetName'   => 'Baker street',
-            'locality'     => 'London',
-            'country'      => 'ENGLAND',
+            'streetName' => 'Baker street',
+            'locality' => 'London',
+            'country' => 'ENGLAND',
         );
-        
+
         $expectedUri = 'http://maps.googleapis.com/maps/api/221+Baker+street+London+ENGLAND&sensor=true';
-        
-        $this->assertSame($expectedUri, $this->uri->getUri($adressComponents));
+
+        $this->assertSame($expectedUri, $this->uri->getUri($addressComponents));
     }
 }

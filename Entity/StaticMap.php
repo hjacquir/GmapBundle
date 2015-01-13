@@ -169,11 +169,11 @@ class StaticMap
     }
     
     /**
-     * @param array $array
+     * @param Array $array
      * 
      * @return StaticMap
      */
-    public static function fromArray(array $array)
+    public static function fromArray(Array $array)
     {
         $staticMap = new self();
         

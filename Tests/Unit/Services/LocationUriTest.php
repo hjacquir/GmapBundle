@@ -18,34 +18,34 @@ class LocationUriTest extends HjUnitTestCase
      * @var LocationUri
      */
     private $locationUri;
-    
+
     public function setUp()
     {
         $this->locationUri = new LocationUri();
     }
-    
+
     public function testShouldBeAnUri()
     {
         $this->hjAssertInstanceOfUri($this->locationUri);
     }
-    
+
     public function testGetSuffixBaseUrlShouldReturnTheAppendedSuffix()
     {
         $this->assertSame('geocode/json?address=', $this->locationUri->getSuffixBaseUrl());
     }
-    
+
     public function testShouldReturnTheCorrectUrlToCallTheApi()
     {
-        $adressComponents = array(
+        $addressComponents = array(
             '221',
             'Baker street',
             'London',
             'England',
         );
-        
-        $expectedUri = 'http://maps.googleapis.com/maps/api/geocode/json?address=221+Baker+street+London+England' . 
-                '&sensor=true';
-        
-        $this->assertSame($expectedUri, $this->locationUri->getUri($adressComponents));
+
+        $expectedUri = 'http://maps.googleapis.com/maps/api/geocode/json?address=221+Baker+street+London+England' .
+            '&sensor=true';
+
+        $this->assertSame($expectedUri, $this->locationUri->getUri($addressComponents));
     }
 }

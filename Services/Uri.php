@@ -19,7 +19,7 @@ abstract class Uri
     /**
      * Return a formatted url used to call the api
      * 
-     * @param array $adressComponents An array of adress components
+     * @param array $addressComponents An array of adress components
      * @param array $mapComponents    An array of map components
      * @param string $label           The label of the point
      * @param string $lat             The latitude of a place
@@ -28,13 +28,13 @@ abstract class Uri
      * @return string The formatted URI
      */
     public function getUri(
-            array $adressComponents, 
-            array $mapComponents = null, 
-            $label = null, 
-            $lat = null, 
-            $lng = null
+        array $addressComponents,
+        array $mapComponents = null,
+        $label = null,
+        $lat = null,
+        $lng = null
     ) {
-        $uri = $this->baseUrl . $this->getSuffixBaseUrl() . $this->encodeAdressComponentsAsUrl($adressComponents);
+        $uri = $this->baseUrl . $this->getSuffixBaseUrl() . $this->encodeAddressComponentsAsUrl($addressComponents);
         
         if (null !== $mapComponents) {
             $uri .= $this->encodeMapComponentsAsUrl($mapComponents, $label, $lat, $lng);
@@ -60,13 +60,13 @@ abstract class Uri
     /**
      * Return the encoded url of adress components
      * 
-     * @param string $adressComponents The address components parameters formatted to string
+     * @param string $addressComponents The address components parameters formatted to string
      * 
      * @return string The encoded url
      */
-    private function encodeAdressComponentsAsUrl($adressComponents)
+    private function encodeAddressComponentsAsUrl($addressComponents)
     {
-        return urlencode($this->formatParameters($adressComponents));
+        return urlencode($this->formatParameters($addressComponents));
     }
     
     /**
@@ -81,9 +81,7 @@ abstract class Uri
      */
     private function encodeMapComponentsAsUrl(array $mapComponents, $label, $lat, $lng)
     {
-        return '&' . http_build_query($mapComponents) . 
-            $label . 
-            $lat . ',' . $lng;
+        return '&'. http_build_query($mapComponents) . $label . $lat . ',' . $lng;
     }
     
     /**
