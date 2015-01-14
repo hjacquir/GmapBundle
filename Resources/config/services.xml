@@ -1,16 +1,25 @@
 <?xml version="1.0" ?>
-
+<!-- todo add unit test -->
 <container xmlns="http://symfony.com/schema/dic/services"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <parameters>
+        <parameter key="symfony.options_resolver.class">Symfony\Component\OptionsResolver\OptionsResolver</parameter>
         <parameter key="symfony.response.class">Symfony\Component\HttpFoundation\Response</parameter>
         <parameter key="symfony.route_collection.class">Symfony\Component\Routing\RouteCollection</parameter>
         <parameter key="hj_gmap.loader.route.class">Hj\GmapBundle\Loader\Route</parameter>
         <parameter key="hj_gmap.default_controller.class">Hj\GmapBundle\Controller\DefaultController</parameter>
+        <parameter key="hj_gmap.static_map_controller.class">Hj\GmapBundle\Controller\StaticMapController</parameter>
+        <parameter key="hj_gmap.static_map_type.class">Hj\GmapBundle\Form\Type\StaticMapType</parameter>
+        <parameter key="hj_gmap.static_map.class">Hj\GmapBundle\Entity\StaticMap</parameter>
     </parameters>
 
     <services>
+        <service id="symfony.options_resolver" class="%symfony.options_resolver.class%"/>
+        <service id="hj_gmap.static_map_type" class="%hj_gmap.static_map_type.class%">
+            <argument type="service" id="symfony.options_resolver" />
+        </service>
+        <service id="hj_gmap.static_map" class="%hj_gmap.static_map.class%" />
         <service id="symfony.response" class="%symfony.response.class%"></service>
         <service id="symfony.route_collection" class="%symfony.route_collection.class%"></service>
         <service id="hj_gmap.loader.route" class="%hj_gmap.loader.route.class%">
@@ -20,6 +29,12 @@
         <service id="hj_gmap.default_controller" class="%hj_gmap.default_controller.class%">
             <argument type="service" id="symfony.response" />
             <argument type="service" id="templating" />
+        </service>
+        <service id="hj_gmap.static_map_controller" class="%hj_gmap.static_map_controller.class%">
+            <argument type="service" id="hj_gmap.default_controller" />
+            <argument type="service" id="form.factory" />
+            <argument type="service" id="hj_gmap.static_map_type" />
+            <argument type="service" id="hj_gmap.static_map" />
         </service>
     </services>
 </container>

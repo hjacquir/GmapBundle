@@ -39,6 +39,22 @@ class DefaultController
     }
 
     /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function getResponse()
+    {
+        return $this->response;
+    }
+
+    /**
+     * @return \Symfony\Component\Templating\EngineInterface
+     */
+    public function getTemplate()
+    {
+        return $this->template;
+    }
+
+    /**
      * @return Response
      */
     public function index()

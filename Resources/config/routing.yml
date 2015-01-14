@@ -1,3 +1,6 @@
 hj_gmap_default:
     path: /
     defaults: { _controller: hj_gmap.default_controller:index }
+hj_gmap_static_map:
+    path: /staticMap
+    defaults: { _controller: hj_gmap.static_map_controller:index }
