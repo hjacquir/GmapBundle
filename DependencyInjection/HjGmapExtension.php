@@ -4,7 +4,7 @@
  * User: Hatim Jacquir <jacquirhatim@gmail.com>
  */
 
-namespace Hj\GmapBundle\DependencyInjection;
+namespace Hj\SqlTesterBundle\DependencyInjection;
 
 use \Symfony\Component\Config\FileLocator;
 use \Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -14,7 +14,7 @@ use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 /**
  * Class to load services
  */
-class HjGmapExtension extends Extension
+class HjSqlTesterExtension extends Extension
 {
     /**
      * @param array            $configs
